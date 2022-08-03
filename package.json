@@ -1,7 +1,7 @@
 {
-  "name": "tiny-slider",
+  "name": "tiny-slider-drupal",
   "version": "2.9.4",
-  "description": "Vanilla javascript slider for all purposes, inspired by Owl Carousel.",
+  "description": "Vanilla javascript slider for Drupal websites, with multilanguage support and inspired by Owl Carousel.",
   "main": "dist/tiny-slider.js",
   "types": "src/tiny-slider.d.ts",
   "directories": {
@@ -24,20 +24,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ganlanyuan/tiny-slider.git"
+    "url": "git+https://github.com/donbuche/tiny-slider.git"
   },
   "files": [
     "dist",
     "src"
   ],
   "keywords": [],
-  "author": "ganlanyuan <ganlanyuan@gmail.com>",
+  "author": "Joan Galtés i Moreno <donbuche@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ganlanyuan/tiny-slider/issues"
+    "url": "https://github.com/donbuche/tiny-slider/issues"
   },
   "browserslist": "> 0.25%, not dead",
-  "homepage": "https://github.com/ganlanyuan/tiny-slider#readme",
+  "homepage": "https://github.com/donbuche/tiny-slider#readme",
   "devDependencies": {
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
