@@ -415,7 +415,7 @@ export var tns = function(options) {
     var autoplayDirection = options.autoplayDirection === 'forward' ? 1 : -1,
         autoplayButton = options.autoplayButton,
         autoplayButtonHTML = options.autoplayButton ? options.autoplayButton.outerHTML : '',
-        autoplayHtmlStrings = ['<span class=\'tns-visually-hidden1\'>', ' ' + animationTxt + '</span>'],
+        autoplayHtmlStrings = ['<span class=\'tns-visually-hidden\'>', ' ' + animationTxt + '</span>'],
         autoplayTimer,
         animating,
         autoplayHoverPaused,
