@@ -1,8 +1,11 @@
 # Tiny Slider 2
-[![](https://data.jsdelivr.com/v1/package/npm/tiny-slider/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tiny-slider)
-![version](https://img.shields.io/badge/Version-2.9.4-green.svg)
+
 
 Tiny slider for all purposes, inspired by [Owl Carousel](https://owlcarousel2.github.io/OwlCarousel2/).
+
+This is a slightly modified version, wich includes multilanguage capabilities for Drupal websites. Indeed, only install this if you're going to use this amazing slider in a Drupal website.
+
+It uses `Drupal.t()` to make some strings translatables, so it can be used in a Drupal 7, 8 and 9, at this moment.
 
 [Demos](http://ganlanyuan.github.io/tiny-slider/demo)
 
