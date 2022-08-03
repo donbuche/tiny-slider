@@ -2,6 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var win$1 = window;
+var raf = win$1.requestAnimationFrame || win$1.webkitRequestAnimationFrame || win$1.mozRequestAnimationFrame || win$1.msRequestAnimationFrame || function (cb) {
+  return setTimeout(cb, 16);
+};
+
 var win = window;
 var caf = win.cancelAnimationFrame || win.mozCancelAnimationFrame || function (id) {
   clearTimeout(id);
@@ -91,7 +96,7 @@ function resetFakeBody(body, docOverflow) {
   }
 }
 
-// get css-calc
+// get css-calc 
 function calc() {
   var doc = document,
       body = getBody(),
@@ -893,16 +898,17 @@ var tns = function (options) {
         navCurrentIndex = getCurrentNavIndex(),
         navCurrentIndexCached = navCurrentIndex,
         navActiveClass = 'tns-nav-active',
-        navStr = 'Carousel Page ',
-        navStrCurrent = ' (Current Slide)';
+        navStr = Drupal.t('Carousel Page '),
+        navStrCurrent = Drupal.t(' (Current Slide)');
   } // autoplay
 
 
   if (hasAutoplay) {
+    var animationTxt = Drupal.t('animation');
     var autoplayDirection = options.autoplayDirection === 'forward' ? 1 : -1,
         autoplayButton = options.autoplayButton,
         autoplayButtonHTML = options.autoplayButton ? options.autoplayButton.outerHTML : '',
-        autoplayHtmlStrings = ['<span class=\'tns-visually-hidden\'>', ' animation</span>'],
+        autoplayHtmlStrings = ['<span class=\'tns-visually-hidden1\'>', ' ' + animationTxt + '</span>'],
         autoplayTimer,
         animating,
         autoplayHoverPaused,
@@ -1562,18 +1568,19 @@ var tns = function (options) {
     // == slides ==
     updateSlideStatus(); // == live region ==
 
-    outerWrapper.insertAdjacentHTML('afterbegin', '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">' + getLiveRegionStr() + '</span>  of ' + slideCount + '</div>');
+    outerWrapper.insertAdjacentHTML('afterbegin', '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">' + Drupal.t('Slide') + ' <span class="current">' + getLiveRegionStr() + '</span>' + Drupal.t(' of ') + slideCount + '</div>');
     liveregionCurrent = outerWrapper.querySelector('.tns-liveregion .current'); // == autoplayInit ==
 
     if (hasAutoplay) {
       var txt = autoplay ? 'stop' : 'start';
+      var localizedText = Drupal.t(txt);
 
       if (autoplayButton) {
         setAttrs(autoplayButton, {
           'data-action': txt
         });
       } else if (options.autoplayButtonOutput) {
-        outerWrapper.insertAdjacentHTML(getInsertPosition(options.autoplayPosition), '<button type="button" data-action="' + txt + '">' + autoplayHtmlStrings[0] + txt + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.autoplayPosition), '<button type="button" data-action="' + txt + '">' + autoplayHtmlStrings[0] + localizedText + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
         autoplayButton = outerWrapper.querySelector('[data-action]');
       } // add event
 
@@ -1603,7 +1610,7 @@ var tns = function (options) {
 
       if (navContainer) {
         setAttrs(navContainer, {
-          'aria-label': 'Carousel Pagination'
+          'aria-label': Drupal.t('Carousel Pagination')
         });
         navItems = navContainer.children;
         forEach(navItems, function (item, i) {
@@ -1623,7 +1630,7 @@ var tns = function (options) {
           navHtml += '<button type="button" data-nav="' + i + '" tabindex="-1" aria-controls="' + slideId + '" ' + hiddenStr + ' aria-label="' + navStr + (i + 1) + '"></button>';
         }
 
-        navHtml = '<div class="tns-nav" aria-label="Carousel Pagination">' + navHtml + '</div>';
+        navHtml = '<div class="tns-nav" aria-label="' + Drupal.t("Carousel Pagination") + '">' + navHtml + '</div>';
         outerWrapper.insertAdjacentHTML(getInsertPosition(options.navPosition), navHtml);
         navContainer = outerWrapper.querySelector('.tns-nav');
         navItems = navContainer.children;
@@ -1654,7 +1661,7 @@ var tns = function (options) {
 
     if (hasControls) {
       if (!controlsContainer && (!prevButton || !nextButton)) {
-        outerWrapper.insertAdjacentHTML(getInsertPosition(options.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[1] + '</button></div>');
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.controlsPosition), '<div class="tns-controls" aria-label="' + Drupal.t("Carousel Navigation") + '" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[1] + '</button></div>');
         controlsContainer = outerWrapper.querySelector('.tns-controls');
       }
 
@@ -3225,18 +3232,18 @@ var tns = function (options) {
     animating = false;
   }
 
-  function updateAutoplayButton(action, txt) {
+  function updateAutoplayButton(action, txt, localizedAction) {
     setAttrs(autoplayButton, {
       'data-action': action
     });
-    autoplayButton.innerHTML = autoplayHtmlStrings[0] + action + autoplayHtmlStrings[1] + txt;
+    autoplayButton.innerHTML = autoplayHtmlStrings[0] + localizedAction + autoplayHtmlStrings[1] + txt;
   }
 
   function startAutoplay() {
     setAutoplayTimer();
 
     if (autoplayButton) {
-      updateAutoplayButton('stop', autoplayText[1]);
+      updateAutoplayButton('stop', autoplayText[1], Drupal.t('Stop'));
     }
   }
 
@@ -3244,7 +3251,7 @@ var tns = function (options) {
     stopAutoplayTimer();
 
     if (autoplayButton) {
-      updateAutoplayButton('start', autoplayText[0]);
+      updateAutoplayButton('stop', autoplayText[1], Drupal.t('Start'));
     }
   } // programaitcally play/pause the slider
 
