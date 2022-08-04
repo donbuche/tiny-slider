@@ -2415,7 +2415,7 @@ export var tns = function(options) {
 
   function stopAutoplay () {
     stopAutoplayTimer();
-    if (autoplayButton) { updateAutoplayButton('stop', autoplayText[1], Drupal.t('Start')); }
+    if (autoplayButton) { updateAutoplayButton('start', autoplayText[0], Drupal.t('Start')); }
   }
 
   // programaitcally play/pause the slider
