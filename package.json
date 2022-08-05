@@ -1,6 +1,6 @@
 {
   "name": "tiny-slider-drupal",
-  "version": "2.9.8",
+  "version": "2.9.9",
   "description": "Vanilla javascript slider for Drupal websites, with multilanguage support and inspired by Owl Carousel.",
   "main": "dist/tiny-slider.js",
   "types": "src/tiny-slider.d.ts",
