@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/donbuche/tiny-slider.git"
+    "url": "git+https://github.com/donbuche/tiny-slider-drupal.git"
   },
   "files": [
     "dist",
@@ -34,10 +34,10 @@
   "author": "Joan Galtés i Moreno <donbuche@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/donbuche/tiny-slider/issues"
+    "url": "https://github.com/donbuche/tiny-slider-drupal/issues"
   },
   "browserslist": "> 0.25%, not dead",
-  "homepage": "https://github.com/donbuche/tiny-slider#readme",
+  "homepage": "https://github.com/donbuche/tiny-slider-drupal#readme",
   "devDependencies": {
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
