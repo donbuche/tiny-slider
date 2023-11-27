@@ -405,7 +405,7 @@ export var tns = function(options) {
         navCurrentIndex = getCurrentNavIndex(),
         navCurrentIndexCached = navCurrentIndex,
         navActiveClass = 'tns-nav-active',
-        navStr = Drupal.t('tns.keyword.Carousel_page_'),
+        navStr = Drupal.t('tns.keyword.Carousel_page:_'),
         navStrCurrent = Drupal.t('tns.keyword._(Current_slide)');
   }
 
