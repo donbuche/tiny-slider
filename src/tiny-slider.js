@@ -405,17 +405,16 @@ export var tns = function(options) {
         navCurrentIndex = getCurrentNavIndex(),
         navCurrentIndexCached = navCurrentIndex,
         navActiveClass = 'tns-nav-active',
-        navStr = Drupal.t('Carousel Page '),
-        navStrCurrent = Drupal.t(' (Current Slide)');
+        navStr = Drupal.t('tns.keyword.Carousel_page_'),
+        navStrCurrent = Drupal.t('tns.keyword._(Current_slide)');
   }
 
   // autoplay
   if (hasAutoplay) {
-    var animationTxt = Drupal.t('animation');
     var autoplayDirection = options.autoplayDirection === 'forward' ? 1 : -1,
         autoplayButton = options.autoplayButton,
         autoplayButtonHTML = options.autoplayButton ? options.autoplayButton.outerHTML : '',
-        autoplayHtmlStrings = ['<span class=\'tns-visually-hidden\'>', ' ' + animationTxt + '</span>'],
+        autoplayHtmlStrings = ['<span class=\'tns-visually-hidden\'>', '</span>'],
         autoplayTimer,
         animating,
         autoplayHoverPaused,
@@ -1003,20 +1002,22 @@ export var tns = function(options) {
     updateSlideStatus();
 
     // == live region ==
-    outerWrapper.insertAdjacentHTML('afterbegin', '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">' + Drupal.t('Slide') + ' <span class="current">' + getLiveRegionStr() + '</span>' + Drupal.t(' of ') + slideCount + '</div>');
+    outerWrapper.insertAdjacentHTML('afterbegin', '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">' + Drupal.t('tns.keyword.Slide') + ' <span class="current">' + getLiveRegionStr() + '</span>' + Drupal.t('tns.keyword._of_') + slideCount + '</div>');
     liveregionCurrent = outerWrapper.querySelector('.tns-liveregion .current');
 
     // == autoplayInit ==
     if (hasAutoplay) {
       var txt = autoplay ? 'stop' : 'start';
-      var localizedText = Drupal.t(txt);
+      var localizedText = autoplay ? Drupal.t('tns.keyword.Stop') : Drupal.t('tns.keyword.Start');
+      
       if (autoplayButton) {
         setAttrs(autoplayButton, {'data-action': txt});
-      } else if (options.autoplayButtonOutput) {
+      } 
+      else if (options.autoplayButtonOutput) {
         outerWrapper.insertAdjacentHTML(getInsertPosition(options.autoplayPosition), '<button type="button" data-action="' + txt + '">' + autoplayHtmlStrings[0] + localizedText + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
         autoplayButton = outerWrapper.querySelector('[data-action]');
       }
-
+      
       // add event
       if (autoplayButton) {
         addEvents(autoplayButton, {'click': toggleAutoplay});
@@ -1035,7 +1036,7 @@ export var tns = function(options) {
       // customized nav
       // will not hide the navs in case they're thumbnails
       if (navContainer) {
-        setAttrs(navContainer, {'aria-label': Drupal.t('Carousel Pagination')});
+        setAttrs(navContainer, {'aria-label': Drupal.t('tns.keyword.Carousel_pagination')});
         navItems = navContainer.children;
         forEach(navItems, function(item, i) {
           setAttrs(item, {
@@ -1054,7 +1055,7 @@ export var tns = function(options) {
           // hide nav items by default
           navHtml += '<button type="button" data-nav="' + i +'" tabindex="-1" aria-controls="' + slideId + '" ' + hiddenStr + ' aria-label="' + navStr + (i + 1) +'"></button>';
         }
-        navHtml = '<div class="tns-nav" aria-label="' + Drupal.t("Carousel Pagination") + '">' + navHtml + '</div>';
+        navHtml = '<div class="tns-nav" aria-label="' + Drupal.t("tns.keyword.Carousel_pagination") + '">' + navHtml + '</div>';
         outerWrapper.insertAdjacentHTML(getInsertPosition(options.navPosition), navHtml);
 
         navContainer = outerWrapper.querySelector('.tns-nav');
@@ -1088,7 +1089,7 @@ export var tns = function(options) {
     // == controlsInit ==
     if (hasControls) {
       if (!controlsContainer && (!prevButton || !nextButton)) {
-        outerWrapper.insertAdjacentHTML(getInsertPosition(options.controlsPosition), '<div class="tns-controls" aria-label="' + Drupal.t("Carousel Navigation") + '" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[1] + '</button></div>');
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.controlsPosition), '<div class="tns-controls" aria-label="' + Drupal.t("tns.keyword.Carousel_navigation") + '" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[1] + '</button></div>');
 
         controlsContainer = outerWrapper.querySelector('.tns-controls');
       }
@@ -2405,17 +2406,17 @@ export var tns = function(options) {
 
   function updateAutoplayButton (action, txt, localizedAction) {
     setAttrs(autoplayButton, {'data-action': action});
-    autoplayButton.innerHTML = autoplayHtmlStrings[0] + localizedAction + autoplayHtmlStrings[1] + txt;
+    autoplayButton.innerHTML = autoplayHtmlStrings[0] + localizedAction + autoplayHtmlStrings[1];
   }
 
   function startAutoplay () {
     setAutoplayTimer();
-    if (autoplayButton) { updateAutoplayButton('stop', autoplayText[1], Drupal.t('Stop')); }
+    if (autoplayButton) { updateAutoplayButton('stop', autoplayText[1], Drupal.t('tns.keyword.Stop')); }
   }
 
   function stopAutoplay () {
     stopAutoplayTimer();
-    if (autoplayButton) { updateAutoplayButton('start', autoplayText[0], Drupal.t('Start')); }
+    if (autoplayButton) { updateAutoplayButton('start', autoplayText[0], Drupal.t('tns.keyword.Start')); }
   }
 
   // programaitcally play/pause the slider
